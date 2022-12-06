@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationRequest;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.CreateUserResource;
+import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserCreateResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthCredentialsUpdateRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserDetailsResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Entities.Authentication;
@@ -65,7 +65,7 @@ public class AuthenticationService implements UserDetailsService {
     	}
 	}
 	
-	public CreateUserResource register(AuthenticationRequest authRequest) {
+	public UserCreateResource register(AuthenticationRequest authRequest) {
 		Authentication userExist = authenticationRepository.findByUsername(authRequest.username);
 		
 		if(userExist == null && authRequest.password != "") {
@@ -75,7 +75,7 @@ public class AuthenticationService implements UserDetailsService {
 			newUser.setPassword(bCryptPasswordEncoder.encode(authRequest.password));
 			
 			Authentication authenticationCreated = authenticationRepository.save(newUser);
-			CreateUserResource createUserResource = new CreateUserResource();
+			UserCreateResource createUserResource = new UserCreateResource();
 			createUserResource.username = authenticationCreated.getUsername();
 			
 			return createUserResource;

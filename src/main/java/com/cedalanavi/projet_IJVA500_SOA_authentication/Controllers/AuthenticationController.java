@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationResource;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.CreateUserResource;
+import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserCreateResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthCredentialsUpdateRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserDetailsResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Services.AuthenticationService;
@@ -48,8 +48,8 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping("/register")
-	public CreateUserResource register(@RequestBody AuthenticationRequest authRequest, HttpServletResponse response) {
-		CreateUserResource createUserResource = authenticationService.register(authRequest);
+	public UserCreateResource register(@RequestBody AuthenticationRequest authRequest, HttpServletResponse response) {
+		UserCreateResource createUserResource = authenticationService.register(authRequest);
 		if (createUserResource != null) {
 			response.setStatus(HttpServletResponse.SC_OK);
 			return createUserResource;
