@@ -17,7 +17,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationRequest;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserCredentialsUpdateRequest;
+import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.CreateUserResource;
+import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthCredentialsUpdateRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserDetailsResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Entities.Authentication;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Repositories.AuthenticationRepository;
@@ -64,7 +65,7 @@ public class AuthenticationService implements UserDetailsService {
     	}
 	}
 	
-	public Authentication register(AuthenticationRequest authRequest) {
+	public CreateUserResource register(AuthenticationRequest authRequest) {
 		Authentication userExist = authenticationRepository.findByUsername(authRequest.username);
 		
 		if(userExist == null && authRequest.password != "") {
@@ -73,13 +74,17 @@ public class AuthenticationService implements UserDetailsService {
 			newUser.setUsername(authRequest.username);
 			newUser.setPassword(bCryptPasswordEncoder.encode(authRequest.password));
 			
-			return authenticationRepository.save(newUser);
+			Authentication authenticationCreated = authenticationRepository.save(newUser);
+			CreateUserResource createUserResource = new CreateUserResource();
+			createUserResource.username = authenticationCreated.getUsername();
+			
+			return createUserResource;
 		} else {
 			return null;
 		}
 	}
 	
-	public void updateUserCredentials(UserCredentialsUpdateRequest userCredentialsUpdateRequest, String jwtToken) {
+	public void updateUserCredentials(AuthCredentialsUpdateRequest userCredentialsUpdateRequest, String jwtToken) {
     	String username = null;
     	try {
         	username = jwtTokenUtil.getUsernameFromToken(jwtToken);

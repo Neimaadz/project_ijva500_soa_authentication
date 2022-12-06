@@ -21,7 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationResource;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserCredentialsUpdateRequest;
+import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.CreateUserResource;
+import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthCredentialsUpdateRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserDetailsResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Services.AuthenticationService;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Utils.JwtTokenUtil;
@@ -47,12 +48,15 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping("/register")
-	public void register(@RequestBody AuthenticationRequest authRequest, HttpServletResponse response) {
-		if (authenticationService.register(authRequest) != null) {
+	public CreateUserResource register(@RequestBody AuthenticationRequest authRequest, HttpServletResponse response) {
+		CreateUserResource createUserResource = authenticationService.register(authRequest);
+		if (createUserResource != null) {
 			response.setStatus(HttpServletResponse.SC_OK);
+			return createUserResource;
 		}
 		else {
 			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
+			return null;
 		}
 	}
 	
@@ -62,7 +66,7 @@ public class AuthenticationController {
 	}
 	
 	@PutMapping("/updateCredentials")
-	public void updateUserCredentials(@RequestBody UserCredentialsUpdateRequest userCredentialsUpdateRequest, HttpServletRequest request) {
+	public void updateUserCredentials(@RequestBody AuthCredentialsUpdateRequest userCredentialsUpdateRequest, HttpServletRequest request) {
 		final String requestTokenHeader = request.getHeader("Authorization");
 		String jwtToken = requestTokenHeader.substring(7);
 		authenticationService.updateUserCredentials(userCredentialsUpdateRequest, jwtToken);
@@ -79,9 +83,9 @@ public class AuthenticationController {
 		return authenticationResource;
 	}
 
-	private void authenticate(String userId, String password) throws AuthenticationException {
+	private void authenticate(String username, String password) throws AuthenticationException {
 		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userId, password));
+			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 		}
 		catch (BadCredentialsException e) {
 			throw new AuthenticationCredentialsNotFoundException("Error, bad credentials", e);
