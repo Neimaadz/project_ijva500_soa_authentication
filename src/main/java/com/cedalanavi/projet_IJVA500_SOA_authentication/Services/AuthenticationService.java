@@ -16,9 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthCredentialsUpdateRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserCreateResource;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthCredentialsUpdateRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserDetailsResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Entities.Authentication;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Repositories.AuthenticationRepository;
@@ -75,16 +75,16 @@ public class AuthenticationService implements UserDetailsService {
 			newUser.setPassword(bCryptPasswordEncoder.encode(authRequest.password));
 			
 			Authentication authenticationCreated = authenticationRepository.save(newUser);
-			UserCreateResource createUserResource = new UserCreateResource();
-			createUserResource.username = authenticationCreated.getUsername();
+			UserCreateResource userCreateResource = new UserCreateResource();
+			userCreateResource.username = authenticationCreated.getUsername();
 			
-			return createUserResource;
+			return userCreateResource;
 		} else {
 			return null;
 		}
 	}
 	
-	public void updateUserCredentials(AuthCredentialsUpdateRequest userCredentialsUpdateRequest, String jwtToken) {
+	public void updateUserCredentials(AuthCredentialsUpdateRequest authCredentialsUpdateRequest, String jwtToken) {
     	String username = null;
     	try {
         	username = jwtTokenUtil.getUsernameFromToken(jwtToken);
@@ -94,7 +94,7 @@ public class AuthenticationService implements UserDetailsService {
 			throw e;
 		}
 		Authentication updatedUser = authenticationRepository.findByUsername(username);
-		updatedUser.setPassword(bCryptPasswordEncoder.encode(userCredentialsUpdateRequest.password));
+		updatedUser.setPassword(bCryptPasswordEncoder.encode(authCredentialsUpdateRequest.password));
 		authenticationRepository.save(updatedUser);
 	}
 	

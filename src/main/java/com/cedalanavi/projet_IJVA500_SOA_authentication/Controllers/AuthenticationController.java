@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthCredentialsUpdateRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserCreateResource;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthCredentialsUpdateRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserDetailsResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Services.AuthenticationService;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Utils.JwtTokenUtil;
@@ -66,10 +66,10 @@ public class AuthenticationController {
 	}
 	
 	@PutMapping("/updateCredentials")
-	public void updateUserCredentials(@RequestBody AuthCredentialsUpdateRequest userCredentialsUpdateRequest, HttpServletRequest request) {
+	public void updateUserCredentials(@RequestBody AuthCredentialsUpdateRequest authCredentialsUpdateRequest, HttpServletRequest request) {
 		final String requestTokenHeader = request.getHeader("Authorization");
 		String jwtToken = requestTokenHeader.substring(7);
-		authenticationService.updateUserCredentials(userCredentialsUpdateRequest, jwtToken);
+		authenticationService.updateUserCredentials(authCredentialsUpdateRequest, jwtToken);
 	}
 
 	@PostMapping("/signin")
