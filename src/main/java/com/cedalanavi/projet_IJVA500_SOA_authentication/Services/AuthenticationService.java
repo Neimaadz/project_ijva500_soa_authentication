@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthCredentialsUpdateRequest;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationRequest;
+import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserCreateResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserDetailsResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Entities.Authentication;
@@ -75,13 +76,24 @@ public class AuthenticationService implements UserDetailsService {
 			newUser.setPassword(bCryptPasswordEncoder.encode(authRequest.password));
 			
 			Authentication authenticationCreated = authenticationRepository.save(newUser);
+			final UserDetails userDetails = loadUserByUsername(authRequest.username);
+			
 			UserCreateResource userCreateResource = new UserCreateResource();
 			userCreateResource.username = authenticationCreated.getUsername();
+			userCreateResource.token = jwtTokenUtil.generateToken(userDetails);
 			
 			return userCreateResource;
 		} else {
 			return null;
 		}
+	}
+	
+	public AuthenticationResource signin(AuthenticationRequest authenticationRequest) {
+		final UserDetails userDetails = loadUserByUsername(authenticationRequest.username);
+		AuthenticationResource authenticationResource = new AuthenticationResource();
+		authenticationResource.token = jwtTokenUtil.generateToken(userDetails);
+		
+		return authenticationResource;
 	}
 	
 	public void updateUserCredentials(AuthCredentialsUpdateRequest authCredentialsUpdateRequest, String jwtToken) {
@@ -101,6 +113,11 @@ public class AuthenticationService implements UserDetailsService {
 	public void deleteUser(int id) {
 		authenticationRepository.deleteById(id);
 	}
+	
+	
+	
+	
+	
 
     @Override
     @Transactional(readOnly = true)

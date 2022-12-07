@@ -6,4 +6,7 @@ public class UserCreateResource {
 
 	@JsonIgnore(value = false)
 	public String username;
+	
+	@JsonIgnore(value = false)
+	public String token;
 }

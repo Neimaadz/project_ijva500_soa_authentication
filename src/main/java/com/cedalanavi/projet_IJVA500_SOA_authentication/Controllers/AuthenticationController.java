@@ -9,7 +9,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +24,6 @@ import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationResou
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserCreateResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserDetailsResource;
 import com.cedalanavi.projet_IJVA500_SOA_authentication.Services.AuthenticationService;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Utils.JwtTokenUtil;
 
 @RestController
 @RequestMapping("authentication")
@@ -33,9 +31,6 @@ public class AuthenticationController {
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
-
-	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
 
 	@Autowired
 	private AuthenticationService authenticationService;
@@ -75,12 +70,7 @@ public class AuthenticationController {
 	@PostMapping("/signin")
 	public AuthenticationResource createAuthenticationToken(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
 		authenticate(authenticationRequest.username, authenticationRequest.password);
-		final UserDetails userDetails = authenticationService.loadUserByUsername(authenticationRequest.username);
-		
-		AuthenticationResource authenticationResource = new AuthenticationResource();
-		authenticationResource.token = jwtTokenUtil.generateToken(userDetails);
-		
-		return authenticationResource;
+		return authenticationService.signin(authenticationRequest);
 	}
 
 	private void authenticate(String username, String password) throws AuthenticationException {
