@@ -1,4 +1,4 @@
-package com.cedalanavi.projet_IJVA500_SOA_authentication.Services;
+package com.cedalanavi.project_ijva500_soa_authentication.Services;
 
 
 import java.util.ArrayList;
@@ -16,14 +16,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthCredentialsUpdateRequest;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationRequest;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationResource;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserCreateResource;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserDetailsResource;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Entities.Authentication;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Repositories.AuthenticationRepository;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Utils.JwtTokenUtil;
+import com.cedalanavi.project_ijva500_soa_authentication.Data.AuthCredentialsUpdateRequest;
+import com.cedalanavi.project_ijva500_soa_authentication.Data.AuthenticationRequest;
+import com.cedalanavi.project_ijva500_soa_authentication.Data.AuthenticationResource;
+import com.cedalanavi.project_ijva500_soa_authentication.Data.UserCreateResource;
+import com.cedalanavi.project_ijva500_soa_authentication.Data.UserDetailsResource;
+import com.cedalanavi.project_ijva500_soa_authentication.Entities.Authentication;
+import com.cedalanavi.project_ijva500_soa_authentication.Repositories.AuthenticationRepository;
+import com.cedalanavi.project_ijva500_soa_authentication.Utils.JwtTokenUtil;
 
 import io.jsonwebtoken.ExpiredJwtException;
 

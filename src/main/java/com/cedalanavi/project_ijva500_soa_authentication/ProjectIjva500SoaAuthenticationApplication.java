@@ -1,4 +1,4 @@
-package com.cedalanavi.projet_IJVA500_SOA_authentication;
+package com.cedalanavi.project_ijva500_soa_authentication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
-public class ProjetIJVA500SoaAuthenticationApplication {
+public class ProjectIjva500SoaAuthenticationApplication {
 
 	@Bean
     // Spring Securiy secure password by encrypting them
@@ -15,7 +15,7 @@ public class ProjetIJVA500SoaAuthenticationApplication {
     }
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProjetIJVA500SoaAuthenticationApplication.class, args);
+		SpringApplication.run(ProjectIjva500SoaAuthenticationApplication.class, args);
 	}
 
 }

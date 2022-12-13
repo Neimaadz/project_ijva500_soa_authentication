@@ -1,4 +1,4 @@
-package com.cedalanavi.projet_IJVA500_SOA_authentication;
+package com.cedalanavi.project_ijva500_soa_authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,8 +14,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Utils.JwtAuthEntryPoint;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Utils.JwtRequestFilter;
+import com.cedalanavi.project_ijva500_soa_authentication.Utils.JwtAuthEntryPoint;
+import com.cedalanavi.project_ijva500_soa_authentication.Utils.JwtRequestFilter;
 
 @Configuration
 @EnableWebSecurity

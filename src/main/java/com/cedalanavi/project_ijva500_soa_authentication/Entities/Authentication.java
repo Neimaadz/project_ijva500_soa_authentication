@@ -1,4 +1,4 @@
-package com.cedalanavi.projet_IJVA500_SOA_authentication.Entities;
+package com.cedalanavi.project_ijva500_soa_authentication.Entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.cedalanavi.projet_IJVA500_SOA_authentication.Utils;
+package com.cedalanavi.project_ijva500_soa_authentication.Utils;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -18,7 +18,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Services.AuthenticationService;
+import com.cedalanavi.project_ijva500_soa_authentication.Services.AuthenticationService;
 
 import io.jsonwebtoken.ExpiredJwtException;
 

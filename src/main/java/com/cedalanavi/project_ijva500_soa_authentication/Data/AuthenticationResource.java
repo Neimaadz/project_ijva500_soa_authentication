@@ -1,4 +1,4 @@
-package com.cedalanavi.projet_IJVA500_SOA_authentication.Data;
+package com.cedalanavi.project_ijva500_soa_authentication.Data;
 
 public class AuthenticationResource {
 

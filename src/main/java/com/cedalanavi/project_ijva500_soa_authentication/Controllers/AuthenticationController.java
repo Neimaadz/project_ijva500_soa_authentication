@@ -1,4 +1,4 @@
-package com.cedalanavi.projet_IJVA500_SOA_authentication.Controllers;
+package com.cedalanavi.project_ijva500_soa_authentication.Controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,12 +18,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthCredentialsUpdateRequest;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationRequest;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.AuthenticationResource;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserCreateResource;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Data.UserDetailsResource;
-import com.cedalanavi.projet_IJVA500_SOA_authentication.Services.AuthenticationService;
+import com.cedalanavi.project_ijva500_soa_authentication.Data.AuthCredentialsUpdateRequest;
+import com.cedalanavi.project_ijva500_soa_authentication.Data.AuthenticationRequest;
+import com.cedalanavi.project_ijva500_soa_authentication.Data.AuthenticationResource;
+import com.cedalanavi.project_ijva500_soa_authentication.Data.UserCreateResource;
+import com.cedalanavi.project_ijva500_soa_authentication.Data.UserDetailsResource;
+import com.cedalanavi.project_ijva500_soa_authentication.Services.AuthenticationService;
 
 @RestController
 @RequestMapping("authentication")

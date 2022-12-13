@@ -1,12 +1,12 @@
-package com.cedalanavi.projet_IJVA500_SOA_authentication.Data;
+package com.cedalanavi.project_ijva500_soa_authentication.Data;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class AuthenticationRequest {
+public class UserCreateResource {
 
 	@JsonIgnore(value = false)
 	public String username;
 	
 	@JsonIgnore(value = false)
-	public String password;
+	public String token;
 }
