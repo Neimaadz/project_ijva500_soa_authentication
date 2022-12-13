@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProjetIjva500SoaAuthenticationApplicationTests {
+class ProjectIjva500SoaAuthenticationApplicationTests {
 
 	@Test
 	void contextLoads() {
