@@ -50,8 +50,7 @@ public class AuthenticationController {
 			return createUserResource;
 		}
 		else {
-			response.setStatus(HttpServletResponse.SC_FORBIDDEN);
-			return null;
+			throw new IllegalArgumentException("Values already exists.");
 		}
 	}
 	

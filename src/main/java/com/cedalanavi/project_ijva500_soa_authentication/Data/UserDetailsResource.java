@@ -1,12 +1,13 @@
 package com.cedalanavi.project_ijva500_soa_authentication.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDetailsResource {
 
 	String username;
 
-	List<String> authorities;
+	List<String> authorities = new ArrayList<String>();
 
 	public String getUsername() {
 		return username;

@@ -1,14 +1,11 @@
 package com.cedalanavi.project_ijva500_soa_authentication.Services;
 
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -52,11 +49,6 @@ public class AuthenticationService implements UserDetailsService {
     	UserDetails userDetails = loadUserByUsername(username);
     	UserDetailsResource userDetailsResource = new UserDetailsResource();
     	userDetailsResource.setUsername(userDetails.getUsername());
-    	List<String> authorities = new ArrayList<String>();
-    	userDetails.getAuthorities().forEach(authoritie -> {
-    		authorities.add(authoritie.getAuthority());
-    	});
-    	userDetailsResource.setAuthorities(authorities);
     	
     	if (username != null && jwtTokenUtil.validateToken(jwtToken, userDetails)) {
         	return userDetailsResource;
@@ -130,8 +122,6 @@ public class AuthenticationService implements UserDetailsService {
         }
 
         Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        grantedAuthorities.add(new SimpleGrantedAuthority("admin"));
-
         UserDetails userDetail = new org.springframework.security.core.userdetails.User(authentication.getUsername(), authentication.getPassword(), grantedAuthorities);
         
         return userDetail;
