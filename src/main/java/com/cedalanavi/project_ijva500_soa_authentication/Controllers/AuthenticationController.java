@@ -59,7 +59,7 @@ public class AuthenticationController {
 		authenticationService.deleteUser(id);
 	}
 	
-	@PutMapping("/updateCredentials")
+	@PutMapping("/credentials/update")
 	public void updateUserCredentials(@RequestBody AuthCredentialsUpdateRequest authCredentialsUpdateRequest, HttpServletRequest request) {
 		final String requestTokenHeader = request.getHeader("Authorization");
 		String jwtToken = requestTokenHeader.substring(7);
