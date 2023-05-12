@@ -1,13 +1,18 @@
 package com.cedalanavi.project_ijva500_soa_authentication.Data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class UserDetailsResource {
 
+	String idUser;
+	
 	String username;
 
-	List<String> authorities = new ArrayList<String>();
+	public String getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(String idUser) {
+		this.idUser = idUser;
+	}
 
 	public String getUsername() {
 		return username;
@@ -16,14 +21,4 @@ public class UserDetailsResource {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-	public List<String> getAuthorities() {
-		return authorities;
-	}
-
-	public void setAuthorities(List<String> authorities) {
-		this.authorities = authorities;
-	}
-	
-	
 }

@@ -45,10 +45,12 @@ public class AuthenticationService implements UserDetailsService {
 		} catch (ExpiredJwtException e) {
 			throw e;
 		}
-    	
+
+    	Authentication authentication = authenticationRepository.findByUsername(username);
     	UserDetails userDetails = loadUserByUsername(username);
     	UserDetailsResource userDetailsResource = new UserDetailsResource();
-    	userDetailsResource.setUsername(userDetails.getUsername());
+    	userDetailsResource.setIdUser(authentication.getIdUser());
+    	userDetailsResource.setUsername(authentication.getUsername());
     	
     	if (username != null && jwtTokenUtil.validateToken(jwtToken, userDetails)) {
         	return userDetailsResource;

@@ -15,6 +15,9 @@ public class Authentication {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+
+	@NonNull
+	private String idUser;
 	
 	@NonNull
 	private String username;
@@ -31,6 +34,14 @@ public class Authentication {
 		this.id = id;
 	}
 	
+	public String getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(String idUser) {
+		this.idUser = idUser;
+	}
+
 	public String getUsername() {
 		return username;
 	}
