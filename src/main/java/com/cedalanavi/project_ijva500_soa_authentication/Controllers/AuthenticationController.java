@@ -54,9 +54,9 @@ public class AuthenticationController {
 		}
 	}
 	
-	@DeleteMapping("/delete/{id}")
-	public void deleteUser(@PathVariable int id) {
-		authenticationService.deleteUser(id);
+	@DeleteMapping("/delete/{idUser}")
+	public void deleteUser(@PathVariable String idUser) {
+		authenticationService.deleteUser(idUser);
 	}
 	
 	@PutMapping("/credentials/update")

@@ -3,6 +3,7 @@ package com.cedalanavi.project_ijva500_soa_authentication.Services;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -66,6 +67,7 @@ public class AuthenticationService implements UserDetailsService {
 		if(userExist == null && authRequest.password != "") {
 			
 			Authentication newUser = new Authentication();
+			newUser.setIdUser(UUID.randomUUID().toString());
 			newUser.setUsername(authRequest.username);
 			newUser.setPassword(bCryptPasswordEncoder.encode(authRequest.password));
 			
@@ -73,6 +75,7 @@ public class AuthenticationService implements UserDetailsService {
 			final UserDetails userDetails = loadUserByUsername(authRequest.username);
 			
 			UserCreateResource userCreateResource = new UserCreateResource();
+			userCreateResource.idUser = authenticationCreated.getIdUser();
 			userCreateResource.username = authenticationCreated.getUsername();
 			userCreateResource.token = jwtTokenUtil.generateToken(userDetails);
 			
@@ -103,9 +106,10 @@ public class AuthenticationService implements UserDetailsService {
 		updatedUser.setPassword(bCryptPasswordEncoder.encode(authCredentialsUpdateRequest.password));
 		authenticationRepository.save(updatedUser);
 	}
-	
-	public void deleteUser(int id) {
-		authenticationRepository.deleteById(id);
+
+	@Transactional
+	public void deleteUser(String idUser) {
+		authenticationRepository.deleteByIdUser(idUser);
 	}
 	
 	
